@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Task } from "../";
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 };
 
-export const TaskList: React.FC<Props> = ({ tasks, setTasks }) => {
+export const TaskList: React.FC<Props> = memo(({ tasks, setTasks }) => {
   // Taskの状態を切り替える
   const handleCheckBox = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -31,4 +31,4 @@ export const TaskList: React.FC<Props> = ({ tasks, setTasks }) => {
       ))}
     </ul>
   );
-};
+});
