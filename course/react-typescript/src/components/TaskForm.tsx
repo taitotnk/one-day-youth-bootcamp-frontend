@@ -15,9 +15,12 @@ export const TaskForm: React.FC<Props> = ({
   setNewTaskLabel,
 }) => {
   // フォームの値を保持する
-  const handleNewTaskLabel = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskLabel(e.target.value);
-  };
+  const handleNewTaskLabel = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setNewTaskLabel(e.target.value);
+    },
+    [setNewTaskLabel]
+  );
 
   // Taskの登録
   const handleAddTask = () => {
