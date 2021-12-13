@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Task } from "../";
 
 type Props = {
@@ -27,10 +27,10 @@ export const TaskForm: React.FC<Props> = ({
   };
 
   // 完了したTaskを削除する
-  const handleClearTasks = () => {
+  const handleClearTasks = useCallback(() => {
     const newTasks = tasks.filter((task) => !task.isDone);
     setTasks(newTasks);
-  };
+  }, [tasks]);
 
   return (
     <>
