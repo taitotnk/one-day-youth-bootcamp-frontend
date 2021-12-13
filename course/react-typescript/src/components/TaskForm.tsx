@@ -35,6 +35,9 @@ export const TaskForm: React.FC<Props> = ({
     setTasks(newTasks);
   }, [tasks]);
 
+  // Taskを完了するものを格納する
+  const doneTasks = tasks.filter((task) => task.isDone);
+
   return (
     <>
       <input
@@ -43,9 +46,22 @@ export const TaskForm: React.FC<Props> = ({
         value={newTaskLabel}
         placeholder="Enter the task"
       />
-      <button onClick={handleAddTask}>Add</button>
+      {newTaskLabel === "" ? (
+        <button onClick={handleAddTask} disabled={true}>
+          Add
+        </button>
+      ) : (
+        <button onClick={handleAddTask}>Add</button>
+      )}
       <br />
-      <button onClick={handleClearTasks}>Clear</button>
+
+      {doneTasks.length > 0 ? (
+        <button onClick={handleClearTasks}>Clear</button>
+      ) : (
+        <button onClick={handleClearTasks} disabled={true}>
+          Clear
+        </button>
+      )}
     </>
   );
 };
